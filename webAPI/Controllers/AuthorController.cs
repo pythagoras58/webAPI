@@ -33,10 +33,21 @@ namespace webAPI.Controllers
         {
             using(var context = new BookStoresDbContext())
             {
-                 context.Authors.Add(author);
+                Author author1 = new Author();
+                author1.LastName = author.LastName;
+                author1.FirstName = author.FirstName;
+                author1.Address = author.Address;
+                author1.EmailAddress = author.EmailAddress;
+                author1.Phone= author.Phone;
+                author1.City = author.City;
+                //author1.State= author.State;
+
+                 //author.AuthorId = context.Authors.OrderByDescending(x=>x.AuthorId).FirstOrDefault().AuthorId+1;
+
+                 context.Authors.Add(author1);
                  context.SaveChanges();
                 //return CreatedAtRoute(context,);
-                return (IEnumerable<Author>)Ok(context);
+                return context.Authors.Where(u=>u.FirstName == author1.FirstName).ToList();
             }
         }
     }
