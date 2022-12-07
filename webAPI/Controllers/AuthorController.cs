@@ -50,5 +50,11 @@ namespace webAPI.Controllers
                 return context.Authors.Where(u=>u.FirstName == author1.FirstName).ToList();
             }
         }
+
+        [HttpPatch]
+        public IEnumerable<Author> updateAuthor(Author author)
+        {
+            return null;
+        }
     }
 }
